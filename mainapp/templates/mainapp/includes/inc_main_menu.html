@@ -1,0 +1,38 @@
+{% load static %}
+
+<ul class="menu">
+    {% for link in menu_links %}
+        <li>
+            <a href="{% url link.url %}" 
+            {% if request.resolver_match.url_name == link.url %}
+                class="active"
+            {% endif%}
+            >            
+            {{ link.name }}
+        </a>
+        </li>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <li>
+        <a href="{% url 'auth:edit' %}">
+            {{ user.first_name|default:'DefaultUser' }}
+        </a>
+    </li>
+    {% endif %}
+    <li>
+        {% if user.is_authenticated %}
+            <a href="{% url 'auth:logout' %}">leave</a>
+        {% else %}
+            <a href="{% url 'auth:login' %}">enter</a>
+        {% endif %}
+    </li>
+</ul>
+<a href="#" class="search"></a>
+<a href="#" class="basket"></a>
+
+{% comment "" %}
+    <!--<a href="{% url 'main' %}" class="logo"></a>-->    
+    <!--<li><a href="/products">продукты</a></li>
+    <li><a href="/contact">контакты</a></li>-->
+{% endcomment %}
