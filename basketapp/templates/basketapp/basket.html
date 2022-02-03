@@ -1,0 +1,7 @@
+{% for item in basket %}
+    {% comment %}{{ basket }}{% endcomment %}
+    {{ item }} <a href="{% url 'basket:remove' item.id %}">Delete</a> <a href="{% url 'basket:add' item.id %}">Add</a>
+    <br/>
+{% endfor %}
+<br/>
+There are {{ basket|length }} products in the basket.
