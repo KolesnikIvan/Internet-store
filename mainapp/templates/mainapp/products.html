@@ -1,0 +1,121 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="hero-white">
+	<div class="header clearfix">
+		{% include 'mainapp/includes/inc_main_menu.html' %}
+	</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="details">
+	{% comment %}<div class="links clearfix">
+		<ul class="links-menu">
+			<li><a href="#" class="active">все</a></li>
+			<li><a href="#">дом</a></li>
+			<li><a href="#">офис</a></li>
+			<li><a href="#">модерн</a></li>
+			<li><a href="#">классика</a></li>
+		</ul>
+	</div>{% endcomment %}
+	{% include 'mainapp/includes/inc_second_menu.html' %}
+
+	<script>
+		function clickhandlre(event){
+			alert('hello');
+			console.log('hello');
+			let address = event.target.getAttribute('src')
+			document.getElementById('bigpic').setAttribute(address)
+			// хотел чтобы крупная картинка менялась бы по щелчку
+			//не понял, почему не получилось
+		}
+	</script>
+	<div class="details-products">
+		<div class="details-slider">
+			<div class="slider-product">
+				<img id='bigpic' src="/static/img/slider1.jpg">
+			</div>
+			<div class="slider-control">
+				{% for pic in pics%}
+				<div class="block">
+					<a href="#"><img src="{% static "img/"|add:pic.adr %}" alt="" onclick="clickhandler()">
+						<div class="text"></div>
+					</a>
+				</div>
+				{% endfor%}
+				<!--<div class="block">
+					<a href="#"><img src="/static/img/controll1.jpg" alt="">
+						<div class="text"></div>
+					</a>
+				</div>
+				<div class="block">
+					<a href="#"><img src="/static/img/controll2.jpg" alt="">
+						<div class="text"></div>
+					</a>
+				</div>-->
+			</div>
+		</div>
+		
+		<div class="description">
+			<h3 class="big-bold">Отличный стул</h3>
+			<h3 class="red">горячее предложение</h3>
+			<p class="price"> 2585.9 <span>руб</span></p>
+			<a href="#" class="red-button">
+				заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+			</a>
+			<div class="description-text">
+				<p>Расположитесь комфортно.</p> 
+				<p>Отличное качество материалов
+					позволит вам это.</p> 
+					<p>Различные цвета</p>
+					<p>высочайший уровень
+						эргономики и прочность.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="related">
+				<div class="title clearfix">
+					<h2>Похожие продукты</h2>
+					<a class="explore" href="#">показать все <img src="/static/img/arrow.png" alt=""></a>
+				</div>
+				<div class="related-products clearfix">
+					{% for prod in sim_products %}
+						<div class="block">
+							<a href="#"><img src="{% static "img/"|add:prod.pic %}" alt="">
+								<div class="text">
+									<img src="{% static "img/icon-hover.png" %}" alt="img">
+									<h4>{{ prod.destination }}</h4>
+									<p>{{ prod.description }}</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+					<!--<div class="block">
+						<a href="#"><img src="/static/img/product-21.jpg" alt="">
+							<div class="text">
+								<img src="/static/img/icon-hover.png" alt="img">
+								<h4>Стул повышенного качества</h4>
+								<p>Не оторваться. </p>
+							</div>
+						</a>
+					</div>
+					<div class="block">
+						<a href="#"><img src="/static/img/product-31.jpg" alt="">
+							<div class="text">
+								<img src="/static/img/icon-hover.png" alt="img">
+								<h4>Стул повышенного качества</h4>
+								<p>Не оторваться. </p>
+							</div>
+						</a>
+					</div>-->
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+		
